@@ -21,7 +21,7 @@
     <Logger name="com.zaxxer.hikari.util" level="off">
     	<Appender-ref ref="console" />
     </Logger>
-    
+     
     <Logger name="java.sql" level="off" additivity="false">
         <Appender-ref ref="console"/> 
     </Logger>
