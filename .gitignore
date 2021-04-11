@@ -1,0 +1,7 @@
+# Compiled source
+*.class
+/target/
+# Logs and databases
+*.log
+/src/test
+.settings
