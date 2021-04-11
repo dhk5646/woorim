@@ -12,7 +12,7 @@
      <AppenderRef ref="console"/> 
     </Root> 
 	
-	<logger name="com.aks.mot.*" level="debug" additivity="false">
+	<logger name="com.aks.woorim.*" level="debug" additivity="false">
 		<Appender-ref ref="console" />
 	</logger>    
     <Logger name="com.zaxxer.hikari.pool" level="off">

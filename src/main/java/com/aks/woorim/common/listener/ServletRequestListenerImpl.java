@@ -24,7 +24,7 @@ public class ServletRequestListenerImpl implements ServletRequestListener {
 		HttpServletRequest request = (HttpServletRequest) servletrequestevent.getServletRequest();
 		String uri = request.getRequestURI();
 
-		if (uri.indexOf(".do") > 1 || uri.indexOf(".dev") > 1 || uri.indexOf(".jsp") > 1) {
+		if (uri.indexOf(".do") > 1 || uri.indexOf(".svc") > 1 || uri.indexOf(".jsp") > 1) {
 			try {
 				request.setAttribute("tranId", AppConst.UUID_TXID + "-" + UUID.randomUUID().toString().replace("-", ""));
 			} catch (Exception e) {
@@ -34,8 +34,8 @@ public class ServletRequestListenerImpl implements ServletRequestListener {
 
 			if (uri.indexOf(".do") != -1) {
 				setMDC(uri, "do");
-			} else if (uri.indexOf(".dev") != -1) {
-				setMDC(uri, "dev");
+			} else if (uri.indexOf(".svc") != -1) {
+				setMDC(uri, "svc");
 			} else if (uri.indexOf(".jsp") != -1) {
 				setMDC(uri, "jsp");
 			}
@@ -47,7 +47,7 @@ public class ServletRequestListenerImpl implements ServletRequestListener {
 		HttpServletRequest request = (HttpServletRequest) servletrequestevent.getServletRequest();
 		String uri = request.getRequestURI();
 
-		if (uri.indexOf(".do") > 1 || uri.indexOf(".dev") > 1 || uri.indexOf(".jsp") > 1) {
+		if (uri.indexOf(".do") > 1 || uri.indexOf(".svc") > 1 || uri.indexOf(".jsp") > 1) {
 			ServletRequestHolder.unhold();
 			UserDataStore.clear();
 			MDC.clear();

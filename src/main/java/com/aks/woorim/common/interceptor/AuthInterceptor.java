@@ -47,9 +47,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			String sessionId = request.getParameter("sessionId")== null ? "" : request.getParameter("sessionId");
 			
 			//02. 세션이 없을 경우 API Key 확인
-			if(!checkApiKey(apiKey)) {
-				throw new AksException("Invalid authentication key");
-			}
+//			if(!checkApiKey(apiKey)) {
+//				throw new AksException("Invalid authentication key");
+//			}
 			
 			
 			

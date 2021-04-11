@@ -13,16 +13,18 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.lookup.DataSourceLookupFailureException;
+import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.aks.woorim.common.mybatis.RefreshableSqlSessionFactoryBean;
 import com.aks.woorim.common.util.BeanUtil;
-import com.zaxxer.hikari.HikariDataSource;
 
 /**
  * root-context.xml 설정
@@ -38,27 +40,15 @@ public class RootConfig{
 	@Resource
 	ApplicationContext applicationContext;
 	
-	@Value("${postgresql.driver}") 
-	private String postgresqlDriver;
-	
-	@Value("${postgresql.url}") 
-	private String postgresqlUrl;
-	
-	@Value("${postgresql.username}")
-	private String postgresqlUsername;
-	
-	@Value("${postgresql.password}") 
-	private String postgresqlPassword;
-	
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
 			return new PropertySourcesPlaceholderConfigurer();
 	}
-
-	//@Primary
+	
 	@Bean(name = "postgresqlDs")
-	public DataSource postgresqlDs() {
+	public DataSource postgresqlDs() throws DataSourceLookupFailureException{
 		
+		/*
 		HikariDataSource dataSource = new HikariDataSource(); 
 		dataSource.setMaximumPoolSize(20); 
 		dataSource.setDriverClassName(postgresqlDriver);
@@ -66,7 +56,13 @@ public class RootConfig{
 		dataSource.addDataSourceProperty("user", postgresqlUsername); 
 		dataSource.addDataSourceProperty("password", postgresqlPassword);
 		dataSource.setAutoCommit(false);
+		*/
 		
+		// 참고 사이트
+		//https://zgundam.tistory.com/84
+		JndiDataSourceLookup jdsl = new JndiDataSourceLookup(); 
+		jdsl.setResourceRef(true);
+		DataSource dataSource = jdsl.getDataSource("jdbc/woorimDs");
 		return dataSource;
 	}
 	

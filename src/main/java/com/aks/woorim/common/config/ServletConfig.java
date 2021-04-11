@@ -49,4 +49,5 @@ public class ServletConfig implements WebMvcConfigurer{
 	  registry.addInterceptor(new AuthInterceptor()).addPathPatterns(new String[] {"/**/*.do", "/**/*.svc"});
 	}
 	
+	
 }
