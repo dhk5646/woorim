@@ -16,6 +16,14 @@ spring:
       minimum-idle: 5
       max-lifetime: 240000
       maximum-pool-size: 20
+  # jpa config
+  jpa:
+    hibernate:
+      ddl-auto: update # 프로젝트 실행 시 자동으로 DDL 을 생성할 지 결정하는 설정
+    properties:
+      hibernate:
+        format_sql: true # 실제 JPA 의 구현체인 하이버네이트가 동작하면서 발생하는 SQL 을 포맷팅해서 출력하는 설정
+    show-sql: true # JPA 처리시 발생하는 SQL 을 보여줄 것인지 결정하는 설정
 
 # https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.enabling
 # spring-actuator config
