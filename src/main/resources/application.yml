@@ -16,3 +16,15 @@ spring:
       minimum-idle: 5
       max-lifetime: 240000
       maximum-pool-size: 20
+
+# https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.enabling
+# spring-actuator config
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#        include: "health,info,metrics,env"
+#      base-path: "/actuator"
+#      path-mapping:
+#        health: "health"
