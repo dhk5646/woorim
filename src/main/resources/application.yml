@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: woorim
+  devtools:
+    livereload:
+      enabled: true # 정적 리소스에 변화가 있을 때 바로 반영한다.
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     # TODO: hikari: jdbc-url ?????
@@ -16,6 +19,12 @@ spring:
       minimum-idle: 5
       max-lifetime: 240000
       maximum-pool-size: 20
+  # thymeleaf config
+  thymeleaf:
+    cache: false # thymeleaf에 대한 캐시를 남기지 않는다. cache=false 설정(운영시는 true)
+    # prefix: classpath:/templates/
+    # suffix: .html
+    check-template-location: true # templates 디렉토리에 파일이 있는지 없는지 체크, 없으면 에러를 발생시킨다.
   # jpa config
   jpa:
     hibernate:
