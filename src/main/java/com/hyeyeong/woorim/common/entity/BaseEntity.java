@@ -3,30 +3,36 @@ package com.hyeyeong.woorim.common.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @EntityListeners(value = {AuditingEntityListener.class})
+@MappedSuperclass
 @Getter
-public abstract class BasicEntity {
+public abstract class BaseEntity {
 
-    @Column(name = "createdBy")
+    @CreatedBy
+    @Column
     private String createdBy;
 
     @CreatedDate
-    @Column(name = "createdDate", updatable = false)
+    @Column(updatable = false)
     private LocalDateTime createdDate;
 
-    @Column(name = "updatedBy")
-    private String updatedBy;
+    @LastModifiedBy
+    @Column
+    private String modifiedBy;
 
     @LastModifiedDate
-    @Column(name = "updatedDate")
-    private LocalDateTime updatedDate;
+    @Column
+    private LocalDateTime modifiedDate;
 
 
 }
