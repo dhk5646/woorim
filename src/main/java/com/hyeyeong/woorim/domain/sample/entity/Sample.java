@@ -1,7 +1,7 @@
 package com.hyeyeong.woorim.domain.sample.entity;
 
 import com.hyeyeong.woorim.common.constants.TableConstants;
-import com.hyeyeong.woorim.common.entity.BasicEntity;
+import com.hyeyeong.woorim.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Sample extends BasicEntity {
+public class Sample extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,5 +24,6 @@ public class Sample extends BasicEntity {
     public static Sample of(String content) {
         return new Sample(null, content);
     }
+
 
 }
